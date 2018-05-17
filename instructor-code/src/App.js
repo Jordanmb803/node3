@@ -56,7 +56,7 @@ class App extends Component {
     axios.get('/api/users' + filter).then(resp=>this.setState({users:resp.data}));
   }
   setFilter(filter, value){
-    let filterObj = {};
+    let filterObj = this.state.filters;
     filterObj[filter] = value;
     this.setState({filters:filterObj}, ()=>{
       this.getUsers();
@@ -66,7 +66,7 @@ class App extends Component {
     let filterObj = Object.assign({},this.state.filters);
     filterObj.name = name;
 
-    this.setState({filters:{name:name || ''}}, ()=>{
+    this.setState({filters:filterObj}, ()=>{
       this.getUsers();
     })
 
